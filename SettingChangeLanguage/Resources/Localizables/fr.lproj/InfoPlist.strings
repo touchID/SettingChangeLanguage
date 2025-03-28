@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  ZMOpenProject
+
+  Created by luchao on 16/12/18.
+  Copyright © 2019年 sesame. All rights reserved.
+*/
+"CFBundleDisplayNameios2" = "BZE OpenSesameOnline";
+"CFBundleDisplayName" = "HK OpenSesameOnline";
+"NSCameraUsageDescription" = "Nous avons besoin de votre consentement pour accéder à la caméra pour rechercher des articles similaires";
+"NSUserTrackingUsageDescription" = "Obtenez des informations sur l'appareil pour pousser votre contenu préféré avec précision";
