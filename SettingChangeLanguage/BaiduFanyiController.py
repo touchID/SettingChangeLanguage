@@ -52,11 +52,34 @@ class JobService:
         thread = Thread(target=task)
         thread.start()
 
+# 替换为你的钉钉机器人 Webhook 地址
+DINGTALK_WEBHOOK = "https://oapi.dingtalk.com/robot/send?access_token=your_access_token"
+
+# 推送到钉钉的工具类
+class DingTalkPushUtil:
+    @staticmethod
+    def pushNotice(alias, tag, content):
+        headers = {
+            "Content-Type": "application/json"
+        }
+        data = {
+            "msgtype": "text",
+            "text": {
+                "content": content
+            }
+        }
+        try:
+            response = requests.post(DINGTALK_WEBHOOK, headers=headers, json=data)
+            response.raise_for_status()
+            logger.info(f"钉钉消息推送成功: {content}")
+        except requests.RequestException as e:
+            logger.error(f"钉钉消息推送失败: {e}")
+
 # 模拟 JiGuangPushUtil
 class JiGuangPushUtil:
     @staticmethod
     def pushNotice(alias, tag, content):
-        logger.info(f"推送通知: {content}")
+        DingTalkPushUtil.pushNotice(alias, tag, content)
 
 # 模拟 LCWriteUdidData
 class LCWriteUdidData:
@@ -273,11 +296,11 @@ def writeYiResultWithLang(lang):
         responce["msg"] = "lang不能为空"
         return responce
     responce["data"] = resultTempArr
-    filePath = "/Users/luchao/Desktop"
-    if "windows" in str(request.user_agent).lower():
-        filePath = realPathForWin
-    else:
-        filePath = realPathForMac
+    # filePath = "/Users/luchao/Desktop"
+    # if "windows" in str(request.user_agent).lower():
+    #     filePath = realPathForWin
+    # else:
+    #     filePath = realPathForMac
     # 获取当前路径
     filePath = os.path.abspath(os.path.dirname(__file__))
 

@@ -63,7 +63,7 @@
 
     if (self.nvType == 3){
         [self.view addSubview:self.nv3View];
-//        [LCUtils debug:_nv3View];
+        [LCUtils debug:_nv3View];
         [self.nv3View mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.view);
             if (iPhoneX) {
